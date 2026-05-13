@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/artan/Downloads/dreamjournal_she.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Journal ♡</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link href="./index_files/css2" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d0a14;
+    --paper: #f5f0e8;
+    --moon: #c8b89a;
+    --accent: #8c5b8c;
+    --accent2: #7a3d6b;
+    --gold: #b8a070;
+    --rose: #c47a8a;
+    --glow: rgba(140,91,140,0.3);
+    --roseglow: rgba(196,122,138,0.25);
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Cormorant Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  #stars {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(1px 1px at 8% 12%, rgba(255,220,230,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 38%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 38% 7%, rgba(255,220,230,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 53% 28%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 68% 10%, rgba(255,220,230,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 83% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 13% 58%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 28% 73%, rgba(255,220,230,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 58% 53%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 76% 68%, rgba(255,220,230,0.3) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 88% 83%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 4% 88%, rgba(255,220,230,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 45% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 91% 43%, rgba(255,220,230,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 62% 80%, rgba(255,220,230,0.3) 0%, transparent 100%);
+  }
+  #nebula {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 80% 20%, rgba(140,61,107,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 20% 80%, rgba(107,61,107,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(196,122,138,0.04) 0%, transparent 70%);
+  }
+  #app {
+    position: relative; z-index: 1;
+    max-width: 900px; margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* POEM BANNER */
+  .poem-banner {
+    margin: 0 0 32px;
+    padding: 28px 32px;
+    background: linear-gradient(135deg, rgba(140,91,140,0.12) 0%, rgba(196,122,138,0.08) 50%, rgba(140,91,140,0.12) 100%);
+    border: 1px solid rgba(196,122,138,0.25);
+    border-radius: 4px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: poemFade 1.2s ease;
+  }
+  @keyframes poemFade { from{opacity:0;transform:translateY(-10px);} to{opacity:1;transform:translateY(0);} }
+  .poem-banner::before { content:'♡'; position:absolute; top:12px; left:18px; color:var(--rose); opacity:0.25; font-size:1.4rem; }
+  .poem-banner::after  { content:'♡'; position:absolute; bottom:12px; right:18px; color:var(--rose); opacity:0.25; font-size:1.4rem; }
+  .poem-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--rose); opacity: 0.7; margin-bottom: 12px;
+  }
+  .poem-text {
+    font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+    font-style: italic; font-weight: 300; line-height: 1.85;
+    color: var(--paper); opacity: 0.9;
+  }
+  .poem-text .name-highlight { color: var(--rose); font-style: normal; font-weight: 400; }
+  .poem-attribution {
+    margin-top: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.62rem; letter-spacing: 0.15em;
+    color: var(--moon); opacity: 0.45;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center; padding: 48px 0 24px;
+    border-bottom: 1px solid rgba(196,122,138,0.2); margin-bottom: 32px;
+  }
+  header h1 { font-size: clamp(2.4rem,6vw,4rem); font-weight:300; letter-spacing:0.12em; color:var(--paper); text-transform:uppercase; }
+  header h1 span { color:var(--rose); font-style:italic; font-weight:300; }
+  header p.subtitle { font-size:0.85rem; color:var(--moon); font-family:'JetBrains Mono',monospace; letter-spacing:0.18em; margin-top:8px; opacity:0.6; }
+
+  /* TABS */
+  .tabs { display:flex; gap:0; margin-bottom:32px; border-bottom:1px solid rgba(196,122,138,0.2); }
+  .tab-btn {
+    background:none; border:none; cursor:pointer; color:var(--moon); opacity:0.5;
+    font-family:'JetBrains Mono',monospace; font-size:0.75rem; letter-spacing:0.15em;
+    text-transform:uppercase; padding:12px 24px; transition:all 0.3s;
+    border-bottom:2px solid transparent; margin-bottom:-1px;
+  }
+  .tab-btn:hover { opacity:0.8; }
+  .tab-btn.active { color:var(--paper); opacity:1; border-bottom-color:var(--rose); }
+  .tab-panel { display:none; }
+  .tab-panel.active { display:block; animation:fadeIn 0.4s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
+
+  /* TODAY */
+  .today-header { display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:16px; margin-bottom:28px; }
+  .today-date-block h2 { font-size:2.2rem; font-weight:300; color:var(--paper); line-height:1; }
+  .today-date-block .weekday { font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.2em; color:var(--moon); opacity:0.7; text-transform:uppercase; margin-bottom:4px; }
+  .cosmic-badges { display:flex; flex-wrap:wrap; gap:8px; align-items:flex-start; }
+  .badge { display:flex; align-items:center; gap:6px; padding:6px 12px; border:1px solid rgba(196,122,138,0.2); border-radius:2px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.1em; color:var(--moon); background:rgba(196,122,138,0.05); }
+  .badge .icon { font-size:1rem; }
+
+  /* LANGUAGE SELECTOR */
+  .lang-selector {
+    display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap;
+  }
+  .lang-btn {
+    padding: 5px 14px;
+    border: 1px solid rgba(196,122,138,0.25);
+    border-radius: 2px; background: none; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--moon); opacity: 0.6; transition: all 0.2s;
+  }
+  .lang-btn:hover { opacity: 0.9; }
+  .lang-btn.active { border-color: var(--rose); color: var(--rose); opacity: 1; background: rgba(196,122,138,0.07); }
+  .lang-label {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--moon); opacity: 0.5; margin-bottom: 8px;
+  }
+
+  /* RECORDER */
+  .recorder-section { background:rgba(196,122,138,0.04); border:1px solid rgba(196,122,138,0.15); border-radius:4px; padding:24px; margin-bottom:20px; }
+  .recorder-section h3 { font-size:0.75rem; font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-transform:uppercase; color:var(--moon); margin-bottom:16px; opacity:0.7; }
+  .recordings-list { margin-bottom:16px; }
+  .recording-item { display:flex; align-items:center; gap:12px; padding:10px 14px; margin-bottom:8px; border:1px solid rgba(196,122,138,0.12); border-radius:3px; background:rgba(196,122,138,0.03); transition:border-color 0.2s; }
+  .recording-item:hover { border-color:rgba(196,122,138,0.3); }
+  .recording-item .rec-num { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--rose); opacity:0.8; min-width:20px; }
+  .recording-item audio { flex:1; height:28px; opacity:0.8; }
+  .recording-item .rec-duration { font-family:'JetBrains Mono',monospace; font-size:0.65rem; color:var(--moon); opacity:0.5; min-width:40px; text-align:right; }
+  .recording-item .del-btn { background:none; border:none; cursor:pointer; color:var(--rose); opacity:0.4; font-size:0.9rem; padding:2px 4px; transition:opacity 0.2s; }
+  .recording-item .del-btn:hover { opacity:1; }
+  .recorder-controls { display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+  .rec-btn { display:flex; align-items:center; gap:8px; padding:10px 20px; border:1px solid; border-radius:2px; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; transition:all 0.2s; }
+  #startRecBtn { background:var(--accent); border-color:var(--accent); color:white; }
+  #startRecBtn:hover { background:#a06ba0; }
+  #stopRecBtn { background:none; border-color:var(--rose); color:var(--rose); display:none; }
+  #stopRecBtn:hover { background:rgba(196,122,138,0.12); }
+  #stopRecBtn.visible { display:flex; }
+  .rec-indicator { display:none; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--rose); opacity:0.8; }
+  .rec-indicator.visible { display:flex; }
+  .rec-dot { width:8px; height:8px; border-radius:50%; background:var(--rose); animation:pulse 1.2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
+  /* TRANSCRIPT */
+  .transcript-box { margin-top:20px; background:rgba(196,122,138,0.04); border:1px solid rgba(196,122,138,0.15); border-radius:4px; padding:20px; }
+  .transcript-box h3 { font-size:0.75rem; font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-transform:uppercase; color:var(--moon); opacity:0.7; margin-bottom:12px; }
+  .transcript-area { width:100%; min-height:100px; background:none; border:none; color:var(--paper); font-family:'Cormorant Garamond',serif; font-size:1.05rem; line-height:1.7; resize:vertical; outline:none; }
+  .transcript-area::placeholder { color:var(--moon); opacity:0.3; }
+  .transcribe-btn { margin-top:12px; padding:8px 18px; background:none; border:1px solid rgba(140,91,140,0.5); border-radius:2px; color:var(--accent); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.2s; display:flex; align-items:center; gap:8px; }
+  .transcribe-btn:hover { background:rgba(140,91,140,0.1); }
+  .transcribe-btn:disabled { opacity:0.3; cursor:not-allowed; }
+
+  /* AI */
+  .ai-section { margin-top:20px; background:linear-gradient(135deg,rgba(140,91,140,0.07),rgba(196,122,138,0.07)); border:1px solid rgba(196,122,138,0.2); border-radius:4px; padding:20px; }
+  .ai-section h3 { font-size:0.75rem; font-family:'JetBrains Mono',monospace; letter-spacing:0.2em; text-transform:uppercase; color:var(--rose); margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .ai-analysis-text { font-size:1rem; line-height:1.75; color:var(--paper); opacity:0.85; white-space:pre-wrap; }
+  .ai-analysis-text.loading { color:var(--moon); opacity:0.5; font-style:italic; font-family:'JetBrains Mono',monospace; font-size:0.8rem; }
+  .analyze-btn { margin-top:12px; padding:8px 18px; background:none; border:1px solid rgba(196,122,138,0.45); border-radius:2px; color:var(--rose); cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.2s; }
+  .analyze-btn:hover { background:rgba(196,122,138,0.1); }
+  .analyze-btn:disabled { opacity:0.3; cursor:not-allowed; }
+  .save-btn { margin-top:24px; width:100%; padding:14px; background:linear-gradient(135deg,var(--accent2),var(--accent)); border:none; border-radius:3px; color:white; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.78rem; letter-spacing:0.2em; text-transform:uppercase; transition:all 0.2s; }
+  .save-btn:hover { transform:translateY(-1px); box-shadow:0 4px 24px var(--roseglow); }
+
+  /* DIARY */
+  .search-bar { display:flex; gap:10px; margin-bottom:24px; }
+  .search-input { flex:1; background:rgba(196,122,138,0.05); border:1px solid rgba(196,122,138,0.2); border-radius:3px; padding:10px 14px; color:var(--paper); font-family:'Cormorant Garamond',serif; font-size:1rem; outline:none; transition:border-color 0.2s; }
+  .search-input:focus { border-color:var(--rose); }
+  .search-input::placeholder { color:var(--moon); opacity:0.4; }
+  .entry-card { background:rgba(196,122,138,0.04); border:1px solid rgba(196,122,138,0.12); border-radius:4px; padding:20px 24px; margin-bottom:16px; cursor:pointer; transition:all 0.2s; }
+  .entry-card:hover { border-color:rgba(196,122,138,0.3); background:rgba(196,122,138,0.07); }
+  .entry-card.expanded { border-color:rgba(196,122,138,0.35); }
+  .entry-card-header { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  .entry-card-date { font-size:1.6rem; font-weight:300; color:var(--paper); line-height:1; }
+  .entry-card-day { font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; color:var(--moon); opacity:0.6; text-transform:uppercase; }
+  .entry-card-badges { display:flex; flex-wrap:wrap; gap:6px; margin-left:auto; }
+  .mini-badge { font-family:'JetBrains Mono',monospace; font-size:0.6rem; padding:3px 8px; border:1px solid rgba(196,122,138,0.15); border-radius:2px; color:var(--moon); opacity:0.7; }
+  .entry-poem-mini { margin-top:10px; padding:10px 14px; border-left:2px solid rgba(196,122,138,0.3); font-style:italic; font-size:0.9rem; color:var(--rose); opacity:0.7; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+  .entry-card-preview { margin-top:12px; font-size:0.95rem; line-height:1.6; color:var(--paper); opacity:0.6; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+  .entry-card-full { display:none; margin-top:16px; }
+  .entry-card.expanded .entry-card-full { display:block; }
+  .entry-card.expanded .entry-card-preview { display:none; }
+  .entry-full-poem { font-style:italic; font-size:1.05rem; line-height:1.9; color:var(--rose); opacity:0.85; border-bottom:1px solid rgba(196,122,138,0.15); padding-bottom:14px; margin-bottom:16px; white-space:pre-wrap; }
+  .entry-full-transcript { font-size:1rem; line-height:1.75; color:var(--paper); opacity:0.85; border-top:1px solid rgba(196,122,138,0.1); padding-top:16px; margin-bottom:16px; white-space:pre-wrap; }
+  .entry-full-analysis { font-size:0.92rem; line-height:1.7; color:var(--accent); opacity:0.9; border-top:1px solid rgba(140,91,140,0.15); padding-top:14px; white-space:pre-wrap; }
+  .entry-full-analysis-label { font-family:'JetBrains Mono',monospace; font-size:0.65rem; letter-spacing:0.15em; text-transform:uppercase; color:var(--rose); opacity:0.7; margin-bottom:6px; }
+
+  /* PATTERNS */
+  .patterns-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:24px; }
+  .patterns-header h2 { font-size:1.8rem; font-weight:300; color:var(--paper); }
+  .pattern-btn { padding:8px 18px; background:var(--accent); border:none; border-radius:2px; color:white; cursor:pointer; font-family:'JetBrains Mono',monospace; font-size:0.7rem; letter-spacing:0.12em; text-transform:uppercase; transition:all 0.2s; }
+  .pattern-btn:hover { background:#a06ba0; }
+  .pattern-btn:disabled { opacity:0.4; cursor:not-allowed; }
+  .patterns-result { background:linear-gradient(135deg,rgba(140,91,140,0.06),rgba(196,122,138,0.06)); border:1px solid rgba(196,122,138,0.2); border-radius:4px; padding:24px; font-size:1rem; line-height:1.8; color:var(--paper); opacity:0.9; white-space:pre-wrap; min-height:120px; }
+  .patterns-result.placeholder { color:var(--moon); opacity:0.4; font-style:italic; font-size:0.9rem; }
+  .empty-state { text-align:center; padding:60px 20px; color:var(--moon); opacity:0.4; font-style:italic; font-size:1.1rem; }
+  .toast { position:fixed; bottom:24px; left:50%; transform:translateX(-50%); background:var(--accent); color:white; padding:10px 24px; border-radius:3px; font-family:'JetBrains Mono',monospace; font-size:0.75rem; letter-spacing:0.1em; opacity:0; pointer-events:none; transition:opacity 0.3s; z-index:100; }
+  .toast.show { opacity:1; }
+  audio { filter:invert(0.85) sepia(0.2); }
+  ::-webkit-scrollbar { width:4px; }
+  ::-webkit-scrollbar-track { background:transparent; }
+  ::-webkit-scrollbar-thumb { background:rgba(196,122,138,0.2); border-radius:2px; }
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<div id="nebula"></div>
+
+<div id="app">
+  <header>
+    <h1>Dream <span>Journal</span></h1>
+    <p class="subtitle">Every night a new world — every dream a new truth</p>
+  </header>
+
+  <!-- DAILY POEM -->
+  <div class="poem-banner" id="poemBanner">
+    <div class="poem-label">✦ A verse for you, this day ✦</div>
+    <div class="poem-text" id="dailyPoem">Not every love survives the night,<br>not every flame can hold its light —<br>but <span class="name-highlight">Artan</span> burns in me so deep<br>he follows me to every sleep.</div>
+    <div class="poem-attribution" id="poemAttribution">— Endurance</div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab(&#39;today&#39;)">Record Today</button>
+    <button class="tab-btn" onclick="switchTab(&#39;diary&#39;)">Journal</button>
+    <button class="tab-btn" onclick="switchTab(&#39;patterns&#39;)">Patterns &amp; Analysis</button>
+  </div>
+
+  <!-- TODAY TAB -->
+  <div class="tab-panel active" id="tab-today">
+    <div class="today-header">
+      <div class="today-date-block">
+        <div class="weekday" id="todayWeekday">Wednesday</div>
+        <h2 id="todayDate">May 13, 2026</h2>
+      </div>
+      <div class="cosmic-badges" id="cosmicBadges"><div class="badge"><span class="icon">🌘</span>Waning Crescent</div><div class="badge"><span class="icon">🌃</span>Evening</div></div>
+    </div>
+
+    <!-- RECORDER -->
+    <div class="recorder-section">
+      <h3>Voice Memos</h3>
+      <div class="recordings-list" id="recordingsList"></div>
+      <div class="recorder-controls">
+        <button class="rec-btn" id="startRecBtn" onclick="startRecording()">
+          <span>●</span> Start Recording
+        </button>
+        <button class="rec-btn" id="stopRecBtn" onclick="stopRecording()">
+          <span>■</span> Stop
+        </button>
+        <div class="rec-indicator" id="recIndicator">
+          <div class="rec-dot"></div>
+          <span id="recTimer">00:00</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRANSCRIPT -->
+    <div class="transcript-box">
+      <h3>Transcript</h3>
+      <div class="lang-label">Transcription language</div>
+      <div class="lang-selector">
+        <button class="lang-btn active" id="lang-en" onclick="setLang(&#39;en&#39;)">🇬🇧 English</button>
+        <button class="lang-btn" id="lang-hr" onclick="setLang(&#39;hr&#39;)">🇭🇷 Croatian</button>
+        <button class="lang-btn" id="lang-sq" onclick="setLang(&#39;sq&#39;)">🇦🇱 Albanian</button>
+      </div>
+      <textarea class="transcript-area" id="transcriptArea" placeholder="Your dream will be transcribed here — or write directly..."></textarea>
+      <button class="transcribe-btn" id="transcribeBtn" onclick="transcribeAudio()" disabled="">
+        <span>◈</span> Transcribe with AI
+      </button>
+    </div>
+
+    <!-- AI ANALYSIS -->
+    <div class="ai-section">
+      <h3><span>♡</span> Dream Interpretation</h3>
+      <div class="ai-analysis-text" id="aiAnalysis" style="color:var(--moon);opacity:0.35;font-style:italic;">
+        Enter your transcript and request an interpretation...
+      </div>
+      <button class="analyze-btn" id="analyzeBtn" onclick="analyzeDream()" disabled="">
+        Interpret this dream
+      </button>
+    </div>
+
+    <button class="save-btn" onclick="saveEntry()">Save Dream Entry</button>
+  </div>
+
+  <!-- DIARY TAB -->
+  <div class="tab-panel" id="tab-diary">
+    <div class="search-bar">
+      <input class="search-input" id="searchInput" placeholder="Search your dreams..." oninput="renderDiary()">
+    </div>
+    <div id="diaryEntries"></div>
+  </div>
+
+  <!-- PATTERNS TAB -->
+  <div class="tab-panel" id="tab-patterns">
+    <div class="patterns-header">
+      <h2>Recognise Patterns</h2>
+      <button class="pattern-btn" id="patternBtn" onclick="analyzePatterns()">Start AI Analysis</button>
+    </div>
+    <div class="patterns-result placeholder" id="patternsResult">
+      The AI will search all your dreams and identify recurring themes, symbols, and patterns...
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ─── POEMS ───────────────────────────────────────────────────────
+const POEMS = [
+  { lines:"Before the sun has learned to rise,\n<n>Artan</n> has already lit my skies —\nhis love, a quiet, steady flame\nthat burns the same through joy and rain.", attr:"— Day's First Light" },
+  { lines:"I close my eyes and find him there,\n<n>Artan</n>, woven through the air —\na name that sounds like coming home,\na soul that makes me less alone.", attr:"— Between the Worlds" },
+  { lines:"The moon asks me what I dream about,\nI answer without any doubt:\n<n>Artan</n> — his voice, his hands, his eyes,\nthe only stars I recognize.", attr:"— Moonside Confession" },
+  { lines:"Some loves are loud and wide and bright,\nbut <n>Artan</n>'s love is softer light —\nit fills the room without a sound\nand turns wherever I am found.", attr:"— Quiet Thunder" },
+  { lines:"Every night the stars realign\nand in their pattern I find signs —\neach constellation spells one name:\n<n>Artan</n>, always just the same.", attr:"— Written in Stars" },
+  { lines:"Time moves strangely when I dream,\nbut nothing's ever what it seems —\nexcept the warmth of <n>Artan</n>'s voice,\nthe one thing that is always choice.", attr:"— Dreamland Geography" },
+  { lines:"In every language, love is spoken,\nbut mine is never fully open\ntill it reaches those two words:\n<n>Artan</n> — the sweetest I have heard.", attr:"— A Thousand Tongues" },
+  { lines:"The morning comes, the dream dissolves,\nbut what my sleeping heart resolves\nremains when light reclaims the day:\n<n>Artan</n> is mine in every way.", attr:"— Waking Truth" },
+  { lines:"Through all the labyrinths I wander,\nthrough skies that split and oceans under —\nI always find my way to him:\n<n>Artan</n>, even at the brim.", attr:"— The Labyrinth" },
+  { lines:"Not every love survives the night,\nnot every flame can hold its light —\nbut <n>Artan</n> burns in me so deep\nhe follows me to every sleep.", attr:"— Endurance" },
+  { lines:"Somewhere between the stars and ground\nis where his love and mine are found —\nin that soft space where nothing's clear,\n<n>Artan</n> makes it whole and near.", attr:"— The In-Between" },
+  { lines:"He speaks and roses learn their scent,\nhe laughs and something heaven-sent\nfills up the ordinary air —\n<n>Artan</n>, rare beyond compare.", attr:"— Alchemy" },
+  { lines:"If dreams are letters we receive\nfrom depths we can barely conceive,\nthen every dream I've ever known\nsigns its name: <n>Artan</n> — mine alone.", attr:"— Letters from Below" },
+  { lines:"The wildest dream I've ever had\nwas waking up and not being sad,\nbecause beside me — warm and true —\n<n>Artan</n>, and nothing else to do.", attr:"— The Gentlest Dream" },
+  { lines:"I dream in colors no one names,\nin feelings without words or frames —\nbut through it all, one constant thread:\n<n>Artan</n>, golden, overhead.", attr:"— Unnamed Colors" },
+  { lines:"Let the world spin and rearrange,\nlet every season feel less strange —\nas long as I can say his name:\n<n>Artan</n>, nothing stays the same.", attr:"— The Anchor" },
+  { lines:"Some nights the darkness feels too wide,\nbut then I find him here inside,\nthe one who makes the darkness glow:\n<n>Artan</n> — the love I know.", attr:"— Inner Compass" },
+  { lines:"The universe conspired, they say,\nto bring two lives the selfsame way —\nI think the universe knew then:\n<n>Artan</n> and I, again, again.", attr:"— Conspiracy of Stars" },
+  { lines:"I've dreamed of mountains, seas, and flight,\nof castles built of frozen light —\nbut nothing in those dreams compares\nto <n>Artan</n>'s eyes, his gentle cares.", attr:"— Castle of Ice" },
+  { lines:"What is a dream but truth untold,\na story waiting to unfold?\nMine always ends the very same:\n<n>Artan</n>, love, and my full name.", attr:"— Unfolding" },
+  { lines:"He is the pause between the notes,\nthe silence where the music floats —\n<n>Artan</n>, the rest that makes the song\nexactly where I most belong.", attr:"— The Space Between" },
+  { lines:"Every dawn is a letter he sends\nbefore the night completely ends —\nthe warmth that finds me half-asleep:\n<n>Artan</n>'s love, mine to keep.", attr:"— Morning Letter" },
+  { lines:"In the grammar of my heart\n<n>Artan</n> plays the only part —\nnoun and verb and punctuation,\nlove's entire conjugation.", attr:"— Heart Grammar" },
+  { lines:"Even in the strangest dream\nwhere nothing is what it may seem,\none truth persists beneath it all:\n<n>Artan</n> catches every fall.", attr:"— Groundwork" },
+  { lines:"The night is long, the dream is deep,\nand I am yours while half asleep —\n<n>Artan</n>, written on my breath,\nthe love that outlasts even death.", attr:"— Depth" },
+  { lines:"I could dream a thousand years\nof wonders, marvels, joys, and fears —\nbut the dream I'd choose to keep\nis simply <n>Artan</n>, while I sleep.", attr:"— The Chosen Dream" },
+  { lines:"He found me in the fold of time\nbefore a word had found its rhyme —\n<n>Artan</n>, first and last and true,\nthe one I keep on waking to.", attr:"— Before Words" },
+  { lines:"The stars may have a million names\nand heaven plays a thousand games —\nbut in the dark I only call\none name above them all: <n>Artan</n>.", attr:"— Above Them All" },
+  { lines:"Soft as the first light after rain,\nwarm as forgetting every pain —\nthat's how his love arrives each day:\n<n>Artan</n>, gentle in every way.", attr:"— After Rain" },
+  { lines:"I've searched in dreams for what is real,\nfor what the waking world won't reveal —\nand every answer that I've found\nhas <n>Artan</n>'s voice, his arms, his sound.", attr:"— The Search Ends" },
+  { lines:"Some souls are made to find each other\nacross the dark, past every border —\n<n>Artan</n> was mine before the start,\nengraved forever on my heart.", attr:"— Engraved" },
+];
+
+function getDailyPoem() {
+  const now = new Date();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(),0,0)) / 86400000);
+  return POEMS[dayOfYear % POEMS.length];
+}
+
+function renderPoem() {
+  const poem = getDailyPoem();
+  const el = document.getElementById('dailyPoem');
+  const html = poem.lines
+    .replace(/\n/g,'<br>')
+    .replace(/<n>(.*?)<\/n>/g,'<span class="name-highlight">$1</span>');
+  el.innerHTML = html;
+  document.getElementById('poemAttribution').textContent = poem.attr;
+}
+
+// ─── LANGUAGE ────────────────────────────────────────────────────
+let selectedLang = 'en';
+const langNames = { en: 'English', hr: 'Croatian', sq: 'Albanian' };
+
+function setLang(lang) {
+  selectedLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('lang-' + lang).classList.add('active');
+}
+
+// ─── STORAGE ─────────────────────────────────────────────────────
+const STORAGE_KEY = 'dreamjournal_she_v1';
+
+async function loadEntries() {
+  try { const r = await window.storage.get(STORAGE_KEY); return r ? JSON.parse(r.value) : []; }
+  catch { return []; }
+}
+async function saveEntries(entries) {
+  await window.storage.set(STORAGE_KEY, JSON.stringify(entries));
+}
+
+// ─── COSMOS ──────────────────────────────────────────────────────
+function getMoonPhase(date) {
+  const known = new Date(2000,0,6.3);
+  const diff = (date - known) / 86400000;
+  const phase = ((diff % 29.53058867) + 29.53058867) % 29.53058867;
+  const phases = [
+    {max:1.85,icon:'🌑',name:'New Moon'},
+    {max:7.38,icon:'🌒',name:'Waxing Crescent'},
+    {max:11.08,icon:'🌓',name:'First Quarter'},
+    {max:14.77,icon:'🌔',name:'Waxing Gibbous'},
+    {max:16.62,icon:'🌕',name:'Full Moon'},
+    {max:22.15,icon:'🌖',name:'Waning Gibbous'},
+    {max:25.84,icon:'🌗',name:'Last Quarter'},
+    {max:29.53,icon:'🌘',name:'Waning Crescent'}
+  ];
+  return phases.find(p => phase < p.max) || phases[0];
+}
+
+function getSunPosition(date) {
+  const h = date.getHours();
+  if (h>=5&&h<8)   return {icon:'🌅',name:'Sunrise'};
+  if (h>=8&&h<12)  return {icon:'☀️', name:'Morning'};
+  if (h>=12&&h<15) return {icon:'🌞',name:'Midday Sun'};
+  if (h>=15&&h<19) return {icon:'🌇',name:'Afternoon'};
+  if (h>=19&&h<21) return {icon:'🌆',name:'Sunset'};
+  if (h>=21||h<1)  return {icon:'🌃',name:'Evening'};
+  return {icon:'🌙',name:'Deep Night'};
+}
+
+function getSpecialDays(date) {
+  const m = date.getMonth()+1, d = date.getDate();
+  const sd = [
+    [1,1,'New Year\'s Day 🎊'],[2,14,'Valentine\'s Day 💕'],[3,20,'Spring Equinox 🌱'],
+    [4,22,'Earth Day 🌍'],[5,1,'Labour Day'],[6,21,'Summer Solstice ☀️'],
+    [9,22,'Autumn Equinox 🍂'],[10,31,'Halloween 🎃'],[12,21,'Winter Solstice ❄️'],
+    [12,24,'Christmas Eve 🎄'],[12,25,'Christmas Day 🎁'],[12,31,'New Year\'s Eve 🥂']
+  ];
+  return sd.filter(([sm,sd2])=>m===sm&&d===sd2).map(([,,n])=>n);
+}
+
+function formatDate(dateStr) {
+  const d = new Date(dateStr);
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  return { weekday: days[d.getDay()], full: `${months[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}` };
+}
+
+function initToday() {
+  const now = new Date();
+  const fmt = formatDate(now.toISOString());
+  document.getElementById('todayWeekday').textContent = fmt.weekday;
+  document.getElementById('todayDate').textContent = fmt.full;
+  const moon = getMoonPhase(now), sun = getSunPosition(now), specials = getSpecialDays(now);
+  const c = document.getElementById('cosmicBadges');
+  [{icon:moon.icon,name:moon.name},{icon:sun.icon,name:sun.name},...specials.map(s=>({icon:'✦',name:s}))]
+    .forEach(b => { c.innerHTML += `<div class="badge"><span class="icon">${b.icon}</span>${b.name}</div>`; });
+}
+
+// ─── RECORDING ───────────────────────────────────────────────────
+let mediaRecorder=null, audioChunks=[], recordings=[], timerInterval=null, timerSeconds=0;
+
+async function startRecording() {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    audioChunks = [];
+    mediaRecorder = new MediaRecorder(stream);
+    mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(audioChunks, {type:'audio/webm'});
+      recordings.push({url:URL.createObjectURL(blob), blob, duration:timerSeconds});
+      renderRecordings();
+      document.getElementById('transcribeBtn').disabled = false;
+      stream.getTracks().forEach(t=>t.stop());
+    };
+    mediaRecorder.start();
+    timerSeconds = 0;
+    timerInterval = setInterval(()=>{
+      timerSeconds++;
+      const m=String(Math.floor(timerSeconds/60)).padStart(2,'0');
+      const s=String(timerSeconds%60).padStart(2,'0');
+      document.getElementById('recTimer').textContent=`${m}:${s}`;
+    },1000);
+    document.getElementById('startRecBtn').style.display='none';
+    document.getElementById('stopRecBtn').classList.add('visible');
+    document.getElementById('recIndicator').classList.add('visible');
+  } catch { showToast('Microphone access denied'); }
+}
+
+function stopRecording() {
+  if (mediaRecorder&&mediaRecorder.state!=='inactive') mediaRecorder.stop();
+  clearInterval(timerInterval);
+  document.getElementById('startRecBtn').style.display='flex';
+  document.getElementById('stopRecBtn').classList.remove('visible');
+  document.getElementById('recIndicator').classList.remove('visible');
+}
+
+function renderRecordings() {
+  document.getElementById('recordingsList').innerHTML = recordings.map((r,i)=>{
+    const m=String(Math.floor(r.duration/60)).padStart(2,'0');
+    const s=String(r.duration%60).padStart(2,'0');
+    return `<div class="recording-item">
+      <span class="rec-num">#${i+1}</span>
+      <audio controls src="${r.url}"></audio>
+      <span class="rec-duration">${m}:${s}</span>
+      <button class="del-btn" onclick="deleteRecording(${i})">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function deleteRecording(i) {
+  recordings.splice(i,1); renderRecordings();
+  if (!recordings.length) document.getElementById('transcribeBtn').disabled=true;
+}
+
+// ─── TRANSCRIBE ───────────────────────────────────────────────────
+async function transcribeAudio() {
+  if (!recordings.length) return;
+  const btn = document.getElementById('transcribeBtn');
+  btn.disabled=true; btn.textContent='⟳ Transcribing...';
+
+  const langInstructions = {
+    en: 'Transcribe this voice recording precisely in English. Return only the transcribed text, no explanations.',
+    hr: 'Transkribiraj ovaj glasovni zapis točno na hrvatskom jeziku. Vrati samo transkribirani tekst, bez objašnjenja.',
+    sq: 'Transkriboni këtë regjistrim zanor saktësisht në gjuhën shqipe. Ktheni vetëm tekstin e transkriptuar, pa shpjegime.'
+  };
+
+  try {
+    const transcripts = [];
+    for (let i=0; i<recordings.length; i++) {
+      const base64 = await blobToBase64(recordings[i].blob);
+      const res = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({
+          model:'claude-sonnet-4-20250514', max_tokens:1000,
+          messages:[{role:'user',content:[
+            {type:'text',text:`${langInstructions[selectedLang]} Recording ${i+1} of ${recordings.length}.`},
+            {type:'document',source:{type:'base64',media_type:recordings[i].blob.type||'audio/webm',data:base64}}
+          ]}]
+        })
+      });
+      const data = await res.json();
+      const text = data.content?.find(c=>c.type==='text')?.text||'';
+      if (text) transcripts.push(`[Recording ${i+1}]\n${text}`);
+    }
+    document.getElementById('transcriptArea').value = transcripts.join('\n\n');
+    document.getElementById('analyzeBtn').disabled = false;
+    showToast(`Transcription complete (${langNames[selectedLang]})`);
+  } catch { showToast('You can type the transcript directly'); }
+  btn.innerHTML='<span>◈</span> Transcribe with AI';
+  btn.disabled=!recordings.length;
+}
+
+function blobToBase64(blob) {
+  return new Promise((res,rej)=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result.split(',')[1]);
+    r.onerror=rej; r.readAsDataURL(blob);
+  });
+}
+
+// ─── ANALYZE ─────────────────────────────────────────────────────
+async function analyzeDream() {
+  const transcript = document.getElementById('transcriptArea').value.trim();
+  if (!transcript) return;
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled=true;
+  const display = document.getElementById('aiAnalysis');
+  display.className='ai-analysis-text loading'; display.textContent='♡ Interpreting your dream...';
+  const moon = getMoonPhase(new Date());
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system:`You are a profound dream interpreter with deep knowledge of Jungian psychology, archetypes, and symbolic dream analysis. Today: ${new Date().toLocaleDateString('en-GB')} — Moon phase: ${moon.name} ${moon.icon}. Respond in English, structured as: 1. Core Theme (1 sentence) 2. Symbolism 3. Psychological Layer (what might the unconscious be processing?) 4. Possible Message (1–2 sentences). Be poetic, insightful, and personal.`,
+        messages:[{role:'user',content:`Interpret this dream:\n\n${transcript}`}]
+      })
+    });
+    const data = await res.json();
+    const text = data.content?.find(c=>c.type==='text')?.text||'';
+    display.className='ai-analysis-text'; display.textContent=text;
+  } catch { display.className='ai-analysis-text'; display.textContent='Interpretation unavailable.'; }
+  btn.disabled=false;
+}
+
+// ─── SAVE ────────────────────────────────────────────────────────
+async function saveEntry() {
+  const transcript = document.getElementById('transcriptArea').value.trim();
+  if (!transcript) { showToast('Please record or write your dream first'); return; }
+  const now = new Date();
+  const moon=getMoonPhase(now), sun=getSunPosition(now);
+  const analysis = document.getElementById('aiAnalysis').textContent;
+  const poem = getDailyPoem();
+  const entry = {
+    id: Date.now(),
+    date: now.toISOString(),
+    dateStr: formatDate(now.toISOString()).full,
+    weekday: formatDate(now.toISOString()).weekday,
+    moon:{icon:moon.icon,name:moon.name},
+    sun:{icon:sun.icon,name:sun.name},
+    specials: getSpecialDays(now),
+    transcript,
+    analysis: (analysis.includes('Interpreting')||analysis.includes('Enter your')) ? '' : analysis,
+    poem: poem.lines.replace(/<n>(.*?)<\/n>/g,'$1'),
+    poemAttr: poem.attr,
+    lang: langNames[selectedLang],
+    recordingCount: recordings.length
+  };
+  const entries = await loadEntries();
+  entries.unshift(entry);
+  await saveEntries(entries);
+  recordings=[]; renderRecordings();
+  document.getElementById('transcriptArea').value='';
+  document.getElementById('aiAnalysis').textContent='Enter your transcript and request an interpretation...';
+  document.getElementById('aiAnalysis').style.cssText='color:var(--moon);opacity:0.35;font-style:italic;';
+  document.getElementById('analyzeBtn').disabled=true;
+  document.getElementById('transcribeBtn').disabled=true;
+  showToast('Dream entry saved ♡');
+}
+
+// ─── DIARY ───────────────────────────────────────────────────────
+async function renderDiary() {
+  const entries = await loadEntries();
+  const q = (document.getElementById('searchInput')?.value||'').toLowerCase();
+  const filtered = q ? entries.filter(e=>
+    e.transcript?.toLowerCase().includes(q)||e.analysis?.toLowerCase().includes(q)||
+    e.dateStr?.toLowerCase().includes(q)||e.moon?.name?.toLowerCase().includes(q)
+  ) : entries;
+  const container = document.getElementById('diaryEntries');
+  if (!filtered.length) {
+    container.innerHTML=`<div class="empty-state">${q?'No dreams found.':'No dreams recorded yet.'}</div>`;
+    return;
+  }
+  container.innerHTML = filtered.map(e=>`
+    <div class="entry-card" id="card-${e.id}" onclick="toggleCard(${e.id})">
+      <div class="entry-card-header">
+        <div>
+          <div class="entry-card-day">${e.weekday}</div>
+          <div class="entry-card-date">${e.dateStr}</div>
+        </div>
+        <div class="entry-card-badges">
+          <span class="mini-badge">${e.moon.icon} ${e.moon.name}</span>
+          <span class="mini-badge">${e.sun.icon} ${e.sun.name}</span>
+          ${(e.specials||[]).map(s=>`<span class="mini-badge">${s}</span>`).join('')}
+          ${e.lang?`<span class="mini-badge">🗣 ${e.lang}</span>`:''}
+          ${e.recordingCount>0?`<span class="mini-badge">🎙 ${e.recordingCount}</span>`:''}
+        </div>
+      </div>
+      ${e.poem?`<div class="entry-poem-mini">${e.poem.split('\n')[0]}</div>`:''}
+      <div class="entry-card-preview">${(e.transcript||'').substring(0,200)}…</div>
+      <div class="entry-card-full">
+        ${e.poem?`<div class="entry-full-poem">${e.poem.replace(/\n/g,'<br>')}<br><span style="font-size:0.75rem;opacity:0.5;font-style:normal;font-family:'JetBrains Mono',monospace;">${e.poemAttr||''}</span></div>`:''}
+        <div class="entry-full-transcript">${e.transcript||''}</div>
+        ${e.analysis?`<div class="entry-full-analysis-label">♡ Dream Interpretation</div><div class="entry-full-analysis">${e.analysis}</div>`:''}
+      </div>
+    </div>
+  `).join('');
+}
+
+function toggleCard(id) {
+  document.getElementById('card-'+id).classList.toggle('expanded');
+}
+
+// ─── PATTERNS ────────────────────────────────────────────────────
+async function analyzePatterns() {
+  const entries = await loadEntries();
+  if (entries.length<2) { showToast('At least 2 entries needed'); return; }
+  const btn = document.getElementById('patternBtn');
+  btn.disabled=true; btn.textContent='⟳ Analysing...';
+  const result = document.getElementById('patternsResult');
+  result.className='patterns-result'; result.textContent='♡ AI is analysing all your dreams...';
+  const all = entries.map(e=>`[${e.dateStr} — ${e.moon.name}]\n${e.transcript}`).join('\n\n---\n\n');
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model:'claude-sonnet-4-20250514', max_tokens:1000,
+        system:'You are a profound dream analyst. Analyse dream journals for recurring patterns, symbols, emotional themes, and psychological meaning. Respond in English, structured as: 1. Recurring Symbols & Themes 2. Emotional Patterns 3. Moon Phase Correlations (if visible) 4. Psychological Interpretation 5. Key Insight.',
+        messages:[{role:'user',content:`Analyse these ${entries.length} dream entries for patterns:\n\n${all.substring(0,8000)}`}]
+      })
+    });
+    const data = await res.json();
+    result.textContent = data.content?.find(c=>c.type==='text')?.text||'No response.';
+  } catch { result.textContent='Analysis failed. Please try again.'; }
+  btn.disabled=false; btn.textContent='Start AI Analysis';
+}
+
+// ─── UTILS ───────────────────────────────────────────────────────
+function switchTab(name) {
+  ['today','diary','patterns'].forEach((t,i)=>{
+    document.querySelectorAll('.tab-btn')[i].classList.toggle('active',t===name);
+    document.querySelectorAll('.tab-panel')[i].classList.toggle('active',t===name);
+  });
+  if (name==='diary') renderDiary();
+}
+
+function showToast(msg) {
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  initToday();
+  renderPoem();
+  document.getElementById('transcriptArea').addEventListener('input',e=>{
+    document.getElementById('analyzeBtn').disabled=!e.target.value.trim();
+  });
+});
+</script>
+
+
+</body></html>
